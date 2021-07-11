@@ -1,0 +1,12 @@
+﻿@model UserAvatarViewModel
+
+@if (@Model.ImagePath != null)
+{
+    <div>
+        <img class="rounded" src="@Model.ImagePath" width="45" height="40" alt="@Model.UserName">
+    </div>
+}
+else
+{
+    <div>@Model.UserName </div>
+}

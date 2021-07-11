@@ -1,0 +1,53 @@
+﻿@model List<UserViewModel>
+<div class="row">
+    @await Html.PartialAsync("AdminLeftMenu")
+    <div class="col-9">
+        <h3 class="text-danger">Пользователи</h3>
+        <br />
+        <div class="row justify-content-end">
+            <a class="btn btn-primary" asp-area="admin" asp-controller="users" asp-action="AddUser" role="button">Добавить пользователя</a>
+        </div>
+
+        @if (Model == null || Model.Count() == 0)
+        {
+            <h4> Пользователей нет </h4>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <table class="table table-primary">
+                        <thead>
+                            <tr>
+                                <td>  №  </td>
+                                <td>  Логин  </td>
+                                <td>  Имя  </td>
+                                <td>  Фамилия  </td>
+                                <td>  Телефон  </td>                                
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @for (var i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i+1)</td>
+                                    <td>@Model[i].Name</td>
+                                    <td>@Model[i].FirstName</td>
+                                    <td>@Model[i].Surname</td>
+                                    <td>@Model[i].PhoneNumber</td>                                    
+                                    <td>
+                                        <a asp-area="admin" asp-controller="users" asp-action="ViewUser" asp-route-id="@Model[i].Id">
+                                            Подробнее
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>

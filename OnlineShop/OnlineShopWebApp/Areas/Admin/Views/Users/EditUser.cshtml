@@ -1,0 +1,33 @@
+﻿@model UserViewModel
+<form method="post">
+    <div class="row">
+        <div class="col-md-5">
+            <h3 class="text-center">Редактирование данных пользователя @Model.Name</h3>
+            <input type="hidden" name="Id" value="@Model.Id">
+            <input type="hidden" name="Password" value="@Model.Password">
+            <input type="hidden" name="Name" value="@Model.Name">
+            <div class="validation" asp-validation-summary="All"></div>
+            <div>
+                <label asp-for="FirstName">Имя</label><br />
+                <input class="form-control" type="text" size="40" asp-for="FirstName" value="@Model.FirstName" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+
+            <div>
+                <label asp-for="Surname">Фамилия</label><br />
+                <input class="form-control" type="text" asp-for="Surname" value="@Model.Surname" />
+                <span asp-validation-for="Surname"></span>
+            </div>
+
+            <div>
+                <label asp-for="PhoneNumber">Телефон</label><br />
+                <input class="form-control" type="tel" size="40" asp-for="PhoneNumber" value="@Model.PhoneNumber" />
+                <span asp-validation-for="PhoneNumber"></span>
+            </div>
+
+            <br />
+            <button class="btn btn-primary" type="submit" asp-area="admin" asp-controller="users" asp-action="EditUser">Изменить данные пользователя</button>
+            <a class="btn btn-primary" type="submit" asp-area="admin" asp-controller="users" asp-action="ViewUser" asp-route-id="@Model.Id" role="button">Вернуться</a>
+        </div>
+    </div>
+</form>

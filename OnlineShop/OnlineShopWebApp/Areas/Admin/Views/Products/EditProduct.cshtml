@@ -1,0 +1,43 @@
+﻿@model EditProductViewModel
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-5">
+            <h3 class="text-center">Редактирование продукта</h3>
+            <input type="hidden" name="Id" value="@Model?.Id">
+
+            <div>
+                <label asp-for="Name">Название</label><br />
+                <input class="form-control" type="text" size="40" asp-for="Name" value="@Model?.Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div>
+                <label asp-for="Cost">Цена</label><br />
+                <input class="form-control" asp-for="Cost" value="@Model?.Cost" />
+                <span asp-validation-for="Cost"></span>
+            </div>
+
+            <div>
+                <label asp-for="Description">Описание</label><br />
+                <input class="form-control" size="45" type="text" asp-for="Description" value="@Model?.Description">
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <div>
+                <label>Изображение </label><br />
+                @foreach (var item in @Model.PathsToImages)
+                {
+                    <img class="card-img-top" src="@item" />
+                }
+            </div>
+
+            <div>
+                <label>Загрузить новое изображение</label>
+                <input type="file" name="UploadedFiles" class="form-control" multiple accept="image/*" />               
+            </div>
+            <br />
+            <button class="btn btn-primary" type="submit" asp-area="admin" asp-controller="Products" asp-action="editProduct">Изменить товар</button>
+            <a class="btn btn-primary" asp-area="admin" asp-controller="Products" asp-action="index" role="button">Вернуться</a>
+        </div>
+    </div>
+</form>

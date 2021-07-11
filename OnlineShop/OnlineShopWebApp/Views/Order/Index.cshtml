@@ -1,0 +1,36 @@
+﻿@model ContactDetailsViewModel
+<form method="post">
+    <div class="row">
+        <div class="col-12">
+            <h3>Платежный адрес</h3>
+
+            <div>
+                <label asp-for="Name">Фамилия Имя Отчество</label><br />
+                <input class="col-5" type="text" placeholder="Иванов Иван Иванович" asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+                       
+            <div>
+                <label asp-for="Phone">Телефон</label><br />
+                <input type="tel" placeholder="88888888888" asp-for="Phone" />
+                <span asp-validation-for="Phone"></span>
+            </div>
+            
+            <div>
+                <label asp-for="Email">Email</label><br />
+                <input type="email" placeholder="fff@mail.ru" asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            <div >
+                <label asp-for="Address">Адрес</label><br />
+                <input class="col-5" type="text" placeholder="г.Смоленск, ул.Томская д.44, кв.39" asp-for="Address" />
+                <span asp-validation-for="Address"></span>
+            </div>          
+
+            <br />
+            <button class="btn btn-primary" type="submit" asp-controller="order" asp-action="buy">Оформить заказ</button>
+        </div>
+    </div>
+</form>
+

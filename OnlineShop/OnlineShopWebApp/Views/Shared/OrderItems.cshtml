@@ -1,0 +1,22 @@
+﻿@model List<BasketItemViewModel>
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <td>  Название  </td>
+            <td>  Цена  </td>
+            <td>  Количество  </td>
+            <td>  Стоимость  </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.Product.Name</td>
+                <td> @item.Product.Cost</td>
+                <td> @item.Amount</td>
+                <td> @item.Cost</td>
+            </tr>
+        }
+    </tbody>
+</table>

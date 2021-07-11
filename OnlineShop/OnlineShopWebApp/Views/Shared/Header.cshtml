@@ -1,0 +1,57 @@
+﻿<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-route-area="" asp-controller="Home" asp-action="Index">OnlineShopWebApp Главная</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <li class="nav-item text-dark">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="PersonalAccount" asp-action="Index" asp-route-userName="@User.Identity.Name">@await Component.InvokeAsync("IconUserAvatar")</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                    </li>
+                    }
+                    else
+                    {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                    </li>
+                    }
+
+                    @if (User.IsInRole(Constants.AdminRoleName))
+                    {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Orders" asp-action="Index">Администратор</a>
+                    </li>
+                    }                   
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-route-area="" asp-controller="ProductsCompared" asp-action="Index">Сравнение</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-route-area="" asp-controller="favorites" asp-action="Index">Избранное</a>
+                    </li>
+                </ul>
+            </div>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <form method="post">
+                <input type="text" placeholder="Поиск.." name="searchName">
+                <button type="submit" asp-route-area="" asp-controller="home" asp-action="search"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        
+        <a class="btn btn-primary" asp-route-area="" asp-controller="basket" asp-action="index" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
+                <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"></path>
+            </svg>
+            Корзина
+            @await Component.InvokeAsync("Basket")
+        </a>
+
+    </nav>
+</header>

@@ -1,0 +1,42 @@
+﻿@model List<string>
+<div class="row">
+    @await Html.PartialAsync("AdminLeftMenu")
+    <div class="col-lg-6">
+        <h3 class="text-danger">  Список ролей  </h3>
+        <div class="row justify-content-end">
+            <a class="btn btn-primary" asp-area="admin" asp-controller="Roles" asp-action="AddRole" role="button">Добавить роль</a>
+        </div>
+        <br />
+
+        @if (Model == null || Model.Count() == 0)
+        {
+            <h4> Роли не созданы </h4>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-primary">
+                        <thead>
+                            <tr>
+                                <td>Имя</td>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="col-lg-6"> @item</td>                                    
+                                    <td> 
+                                        <a type="button" class="btn btn-outline-primary" 
+                                           asp-area="admin" asp-controller="Roles" asp-action="removeRole" asp-route-name="@item">Удалить</a>                                        
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>

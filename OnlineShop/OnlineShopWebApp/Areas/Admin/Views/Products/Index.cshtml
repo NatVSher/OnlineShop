@@ -1,0 +1,51 @@
+﻿@model List<ProductViewModel>
+
+<div class="row">
+    @await Html.PartialAsync("AdminLeftMenu")
+    <div class="col-9">
+        <h3 class="text-danger">  Список продуктов  </h3>
+        <div class="row justify-content-end">
+            <a class="btn btn-primary" asp-area="admin" asp-controller="Products" asp-action="AddProduct" role="button">Добавить товар</a>
+        </div>
+        <br />
+
+        @if (Model == null || Model.Count() == 0)
+        {
+            <h4> Товаров в магазине нет </h4>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <table class="table table-primary">
+                        <thead>
+                            <tr>
+                                <td>  Название  </td>
+                                <td>  Цена  </td>                                
+                                <td>  Описание  </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td> @item.Name</td>
+                                    <td> @item.Cost</td>                                    
+                                    <td> @item.Description</td>
+                                    <td>
+                                        <a type="button" class="btn btn-outline-primary"
+                                           asp-area="admin" asp-controller="Products" asp-action="ViewDetails" asp-route-productId="@item.Id">Просмотреть</a>
+                                        <a type="button" class="btn btn-outline-primary"
+                                           asp-area="admin" asp-controller="Products" asp-action="EditProduct" asp-route-productId="@item.Id">Редактировать</a>
+                                        <a type="button" class="btn btn-outline-primary"
+                                           asp-area="admin" asp-controller="Products" asp-action="removeProduct" asp-route-productId="@item.Id">Удалить</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>

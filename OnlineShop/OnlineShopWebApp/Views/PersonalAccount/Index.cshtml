@@ -1,0 +1,45 @@
+﻿@model UserViewModel
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        @await Html.PartialAsync("ProfileLeftMenu")
+        <div class="col-md-5">
+            <h3 class="text-center">@Model.Name</h3>
+            <input type="hidden" name="Id" value="@Model.Id">
+            <input type="hidden" name="Name" value="@Model.Name">
+            <input type="hidden" name="Password" value="@Model.Password">
+            <div class="validation" asp-validation-summary="All"></div>
+            <div class="card h-auto box-shadow">
+                <div class="form-group">
+                    <img class="card-img-top" src="@Model.ImagePath" />
+                </div>
+                <div class="form-group">
+                    <label>Загрузить новую аватарку</label>
+                    <input type="file" name="UploadedFile" class="form-control" />
+                </div>
+                <div class="card-body">
+                    <div>
+                        <label asp-for="FirstName">Имя</label><br />
+                        <input class="form-control" type="text" size="40" asp-for="FirstName" value="@Model.FirstName" />
+                        <span asp-validation-for="FirstName"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Surname">Фамилия</label><br />
+                        <input class="form-control" type="text" asp-for="Surname" value="@Model.Surname" />
+                        <span asp-validation-for="Surname"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="PhoneNumber">Телефон</label><br />
+                        <input class="form-control" type="tel" size="40" asp-for="PhoneNumber" value="@Model.PhoneNumber" />
+                        <span asp-validation-for="PhoneNumber"></span>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-primary" type="submit" asp-area="" asp-controller="PersonalAccount" asp-action="Index">Сохранить</button>
+            <a class="btn btn-success" type="submit" asp-area="" asp-controller="Home" asp-action="Index" role="button">Вернуться</a>
+        </div>
+    </div>
+</form>
+

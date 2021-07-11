@@ -1,0 +1,14 @@
+﻿@model List<ProductViewModel>
+<div class="text-center">
+    <h2 class="text-danger"> Найденные товары </h2>
+    <br />
+</div>
+
+@if (Model == null || Model.Count == 0)
+{
+    <h4> Поиск не дал результатов </h4>
+}
+else
+{
+    @await Html.PartialAsync("ViewProduct", Model)
+}

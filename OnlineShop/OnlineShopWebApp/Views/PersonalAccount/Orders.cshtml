@@ -1,0 +1,52 @@
+﻿@model List<OrderViewModel>
+<div class="row">
+    @await Html.PartialAsync("ProfileLeftMenu")
+    <div class="col-9">
+        <h3 class="text-danger">  Список заказов  </h3>
+        <br />
+
+        @if (Model == null || Model.Count() == 0)
+        {
+            <h4> Заказов нет </h4>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <table class="table table-primary">
+                        <thead>
+                            <tr>
+                                <td>  №  </td>
+                                <td>  Сумма  </td>
+                                <td>  Статус  </td>
+                                <td>  Адрес доставки  </td>
+                                <td>  Дата  </td>
+                                <td>  Время  </td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @for (var i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i+1)</td>
+                                    <td>@Model[i].Cost</td>
+                                    <td>@Model[i].OrderStatus.GetDisplayName()</td>
+                                    <td>@Model[i].ContactData.Address</td>
+                                    <td>@Model[i].DateOrder</td>
+                                    <td>@Model[i].TimeOrder</td>
+                                    <td>
+                                        <a asp-area="" asp-controller="PersonalAccount" asp-action="GetOrder" asp-route-id ="@Model[i].Id">
+                                            Состав заказа
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>

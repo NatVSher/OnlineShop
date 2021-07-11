@@ -1,0 +1,35 @@
+﻿@model CreateProductViewModel
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-10">
+                <h3 class="text-center text-danger">Добавление продукта</h3>
+
+                <div>
+                    <label asp-for="Name">Название</label><br />
+                    <input type="text" size="40" placeholder="Медитация" asp-for="Name" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Cost">Цена</label><br />
+                    <input placeholder="1000" asp-for="Cost" />
+                    <span asp-validation-for="Cost"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Description">Описание</label><br />
+                    <textarea cols="40" rows="4" type="text" placeholder="Для чего" asp-for="Description"></textarea>
+                    <span asp-validation-for="Description"></span>
+                </div>
+
+                <div>
+                    <label>Загрузить изображение</label>
+                    <input type="file" asp-for="UploadedFiles" class="form-control" multiple accept="image/*" />
+                </div>                
+
+                <br />
+                <button class="btn btn-primary" type="submit" asp-area="admin" asp-controller="products" asp-action="AddProduct">Добавить товар</button>
+                <a class="btn btn-primary" asp-area="admin" asp-controller="products" asp-action="index" role="button">Вернуться</a>
+            </div>
+        </div>
+    </form>

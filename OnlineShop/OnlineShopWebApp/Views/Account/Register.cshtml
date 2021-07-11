@@ -1,0 +1,72 @@
+﻿@model Register
+<form method="post">
+    <div class="col-md-7 offset-md-4">
+        <h1 class="text-danger">Регистрация</h1>
+        <hr>
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+        <div>
+            <label asp-for="UserName">Логин</label><br />
+            <input type="email" placeholder="Введите логин" asp-for="UserName" />
+            <span asp-validation-for="UserName"></span>
+        </div>
+
+        <div>
+            <label asp-for="Password">Пароль</label><br />
+            <input type="password" placeholder="Введите пароль" asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div>
+            <label asp-for="ConfirmPassword">Повторить пароль</label><br />
+            <input type="password" placeholder="Повторите пароль" asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-3">
+                <ul>
+                    <li style="list-style-type:none">
+                        <div class="d-flex" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#emailModal">
+                            <button class="btn btn-success" type="submit"
+                                    asp-area=""
+                                    asp-controller="Account"
+                                    asp-action="Register">
+                                Зарегистрироваться
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <ul>
+                    <li style="list-style-type:none">
+                        <a class="btn btn-outline-primary"
+                           asp-area=""
+                           asp-controller="account"
+                           asp-action="login"
+                           asp-route-returnUrl="@Model.ReturnUrl" role="button">Вернуться</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Отправка Email</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p3>На ваш email отправлено письмо с подтверждением регистрации</p3>
+            </div>
+        </div>
+    </div>
+</div>

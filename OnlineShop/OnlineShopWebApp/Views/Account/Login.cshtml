@@ -1,0 +1,45 @@
+﻿@model Login
+<form method="post">    
+    <div class="row">
+        <div class="col-md-7 offset-md-4">
+            <h1 class="text-danger"> Вход </h1>
+            <hr />
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <input type ="hidden" name="returnUrl" value="@Model.ReturnUrl"/>
+            <div>
+                <label asp-for="UserName">Логин</label><br />
+                <input type="email" placeholder="Введите логин" asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+
+            <div>
+                <label asp-for="Password">Пароль</label><br />
+                <input type="password" placeholder="Введите пароль" asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <br />
+
+            <label>
+                <input type="checkbox" checked="checked" name="remember" value="true"> Запомнить меня
+            </label>
+            <br />
+            <div>
+                <button type="submit" 
+                        asp-controller="Account" 
+                        asp-action="Login">  Войти </button>
+                <a class="btn btn-outline-primary" 
+                   asp-area="" asp-controller="home" 
+                   asp-action="index" role="button">Вернуться</a>
+            </div>
+            <br />
+
+            <div class="col-md-4" style="background-color:#f1f1f1">
+                <a class="nav-link text-dark" 
+                   asp-area="" 
+                   asp-controller="Account" 
+                   asp-action="register" 
+                   asp-route-returnUrl="@Model.ReturnUrl">Регистрация</a>
+            </div>            
+        </div>
+    </div>
+</form>

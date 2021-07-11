@@ -1,0 +1,42 @@
+﻿@model CreateUserViewModel
+<form method="post">
+    <div class="row">
+        <div class="col-md-10">
+            <h3 class="text-center text-danger">Добавление пользователя</h3>
+            <div class="validation" asp-validation-summary="All"></div>
+            <div>
+                <label asp-for="FirstName">Имя</label><br />
+                <input type="text" asp-for="FirstName" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+
+            <div>
+                <label asp-for="Surname">Фамилия</label><br />
+                <input type="text" asp-for="Surname" />
+                <span asp-validation-for="Surname"></span>
+            </div>
+
+            <div>
+                <label asp-for="UserName">Логин</label><br />
+                <input type="email" asp-for="UserName">
+                <span asp-validation-for="UserName"></span>
+            </div>
+
+            <div>
+                <label asp-for="Password">Пароль</label><br />
+                <input type="text" required asp-for="Password">
+                <span asp-validation-for="Password"></span>
+            </div>            
+
+            <div>
+                <label asp-for="PhoneNumber">Телефон</label><br />
+                <input type="tel" placeholder="88888888888" asp-for="PhoneNumber" />
+                <span asp-validation-for="PhoneNumber"></span>
+            </div>
+
+            <br />
+            <button class="btn btn-primary" type="submit" asp-area="admin" asp-controller="users" asp-action="AddUser">Добавить пользователя</button>
+            <a class="btn btn-primary" asp-area="admin" asp-controller="users" asp-action="index" role="button">Вернуться</a>
+        </div>
+    </div>
+</form>

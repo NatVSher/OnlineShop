@@ -1,0 +1,44 @@
+﻿@model UserViewModel
+<form method="post">
+
+    <div class="row">
+        @await Html.PartialAsync("AdminLeftMenu")
+        <div class="col-9">
+            <h3 class="text-danger">Пользователь</h3>
+            <br />
+            <input type="hidden" name="Id" value="@Model.Id">
+            <dl>
+                <dt>Имя</dt>
+                <dd>@Model.FirstName</dd>
+                <dt>Фамилия</dt>
+                <dd>@Model.Surname</dd>
+                <dt>Логин</dt>
+                <dd>@Model.Name </dd>
+                <dt>Телефон</dt>
+                <dd>@Model.PhoneNumber</dd>
+                <dt>Роль</dt>
+                @foreach (var item in @ViewBag?.UserRoles)
+                {
+                    <dd>
+                        @item
+                    </dd>
+                }
+
+            </dl>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Действия
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="users" asp-action="ChangePassword" asp-route-Id="@Model.Id">Смена пароля</a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="users" asp-action="EditUser" asp-route-Id="@Model.Id">Редактирование данных</a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="users" asp-action="ChangeRole" asp-route-userId="@Model.Id">Права доступа</a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="users" asp-action="RemoveUser" asp-route-Id="@Model.Id">Удалить пользователя</a>
+                </div>
+            </div>
+            <br />
+            <a class="btn btn-danger" asp-area="admin" asp-controller="users" asp-action="index" role="button">Вернуться</a>
+        </div>
+    </div>
+</form>

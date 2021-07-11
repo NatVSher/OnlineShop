@@ -1,0 +1,50 @@
+﻿@model List<ProductViewModel>
+    <div class="text-center">
+        <h2 class="text-danger"> Сравнение </h2>
+        <br />
+    </div>
+    @if (Model == null || Model.Count == 0)
+    {
+        <h4> Продуктов для сравнения не выбрано </h4>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <td>  Название  </td>
+                            <td>  Цена  </td>
+                            <td>  Описание  </td>
+                            <td>
+                                <a type="button" class="btn btn-secondary" href="/ProductsCompared/clear">Очистить</a>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td> @item.Name</td>
+                                <td> @item.Cost</td>
+                                <td> @item.Description </td>
+
+                                <td>
+                                    <a class="btn btn-primary" href="/basket/add?productId=@item.Id" role="button">Добавить в корзину</a>
+                                    <a type="button" class="btn btn-outline-primary" href="/ProductsCompared/Remove?productId=@item.Id">-</a>
+                                    <a class="btn btn-success" type="radio" href="/favorites/add?productId=@item.Id" role="button">В избранное</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="text-center">
+                    <a class="btn btn-danger" href="/home/index" role="button">Вернуться на главную</a>
+                </div>
+            </div>
+        </div>
+
+    }
+

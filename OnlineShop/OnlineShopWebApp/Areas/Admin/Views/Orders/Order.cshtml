@@ -1,0 +1,38 @@
+﻿@model OrderViewModel
+<form method="post">
+    <div class="row">
+        @await Html.PartialAsync("AdminLeftMenu")
+        <div class="col-2">
+            <h3 class="text-danger">  Заказ №@ViewBag.Number  </h3>
+            <br />
+            <input type="hidden" name="orderId" value="@Model.Id">
+            <dl>
+                <dt>Дата и время оформления</dt>
+                <dd>@Model.DateOrder в @Model.TimeOrder</dd>
+                <dt>Адрес доставки</dt>
+                <dd>@Model.ContactData.Address</dd>
+                <dt>Получатель</dt>
+                <dd>@Model.ContactData.Name</dd>
+                <dt>Телефон</dt>
+                <dd>@Model.ContactData.Phone</dd>
+                <dt>Email</dt>
+                <dd>@Model.ContactData.Email</dd>
+                <dt>Сумма заказа</dt>
+                <dd>@Model.Cost</dd>
+                <dt>Статус заказа</dt>
+            </dl>
+            <select class="form-select" asp-for="@Model.OrderStatus"
+                    asp-items="@Html.GetEnumSelectList<OrderStatusesViewModel>()">
+            </select>
+
+            <button class="btn btn-primary" type="submit" asp-area="admin" asp-controller="orders" asp-action="OrderEditStatus">Изменить</button>
+
+        </div>
+        <div class="col-8">
+            <h4 class="text-danger">  Состав заказа  </h4>
+            @await Html.PartialAsync("OrderItems", Model.Items)
+            <br />
+            <a class="btn btn-danger" asp-area="admin" asp-controller="orders" asp-action="index" role="button">Вернуться</a>
+        </div>
+    </div>
+</form>

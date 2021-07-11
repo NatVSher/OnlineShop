@@ -1,0 +1,14 @@
+﻿@model List<BasketItemViewModel>
+<div class="row">
+    @await Html.PartialAsync("ProfileLeftMenu")
+    <div class="col-9">
+        <h2 class="text-danger"> Ваш заказ </h2>
+        <br />    
+        @await Html.PartialAsync("OrderItems", Model)
+        <div class="text-center">
+            <a asp-area="" asp-controller="PersonalAccount" asp-action="Orders" asp-route-userName="@User.Identity.Name">Вернуться</a>
+        </div>
+    </div>
+</div>
+
+
